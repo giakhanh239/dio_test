@@ -4,7 +4,7 @@ import 'package:flutter_app_dio_test/ui/detail_movie/detail_movie_screen.dart';
 import 'package:flutter_app_dio_test/ui/home_screen/controller/home_screen_controller.dart';
 import 'package:get/get.dart';
 
-class Home extends GetView<HomeScreenController> {
+class Home extends StatelessWidget {
   final HomeScreenController _controller = Get.put(HomeScreenController());
 
   @override
