@@ -1,12 +1,13 @@
 
 import 'package:flutter_app_dio_test/model/movie.dart';
 import 'package:flutter_app_dio_test/network/dio/movie_dio.dart';
+import 'package:flutter_app_dio_test/repository/movie_repository.dart';
 import 'package:get/get.dart';
 
 class HomeScreenController extends GetxController{
   var itemList=List<Movie>.empty(growable: true).obs;
   var pageNumber=1;
-  DioMovie _dio=DioMovie();
+  MovieRepository _repository=new MovieRepository();
 
   /// init
   @override
@@ -21,9 +22,10 @@ class HomeScreenController extends GetxController{
   void getNewMovieList() async {
     try {
       List<Movie> movieList;
-      movieList = await _dio.getMovies(
+      movieList = await _repository.getMovies(
           "$BASE_URL/popular?api_key=$API_KEY&language=en-US&page=$pageNumber");
       itemList.addAll(movieList);
+
     } on Exception catch (e) {
       print(e);
       throw e;
